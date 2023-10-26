@@ -98,8 +98,12 @@ function getSumBetweenNumbers(n1, n2) {
  *   10,1,1   =>  false
  *   10,10,10 =>  true
  */
-function isTriangle(/* a, b, c */) {
-  throw new Error('Not implemented');
+function isTriangle(a, b, c) {
+  if (a + b > c && b + c > a && a + c > b) {
+    return true;
+  }
+
+  return false;
 }
 
 /**
@@ -179,8 +183,16 @@ function isInsideCircle(/* circle, point */) {
  *   'abracadabra'  => 'c'
  *   'entente' => null
  */
-function findFirstSingleChar(/* str */) {
-  throw new Error('Not implemented');
+function findFirstSingleChar(str) {
+  for (let i = 0; i < str.length; i += 1) {
+    const regex = new RegExp(str[i], 'g');
+
+    if (str.match(regex).length === 1) {
+      return str[i];
+    }
+  }
+
+  return null;
 }
 
 /**
@@ -205,8 +217,27 @@ function findFirstSingleChar(/* str */) {
  *   5, 3, true, true   => '[3, 5]'
  *
  */
-function getIntervalString(/* a, b, isStartIncluded, isEndIncluded */) {
-  throw new Error('Not implemented');
+function getIntervalString(a, b, isStartIncluded, isEndIncluded) {
+  const min = Math.min(a, b);
+  const max = Math.max(a, b);
+
+  let res = '';
+
+  if (isStartIncluded) {
+    res += '[';
+  } else {
+    res += '(';
+  }
+
+  res += `${min}, ${max}`;
+
+  if (isEndIncluded) {
+    res += ']';
+  } else {
+    res += ')';
+  }
+
+  return res;
 }
 
 /**
@@ -221,8 +252,12 @@ function getIntervalString(/* a, b, isStartIncluded, isEndIncluded */) {
  * 'rotator' => 'rotator'
  * 'noon' => 'noon'
  */
-function reverseString(/* str */) {
-  throw new Error('Not implemented');
+function reverseString(str) {
+  let res = '';
+  for (let i = str.length - 1; i >= 0; i -= 1) {
+    res += str[i];
+  }
+  return res;
 }
 
 /**
@@ -237,8 +272,12 @@ function reverseString(/* str */) {
  *   87354 => 45378
  *   34143 => 34143
  */
-function reverseInteger(/* num */) {
-  throw new Error('Not implemented');
+function reverseInteger(num) {
+  const str = String(num);
+
+  const reverseStr = str.split('').reverse().join('');
+
+  return Number(reverseStr);
 }
 
 /**
